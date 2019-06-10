@@ -73,8 +73,8 @@ class Register extends Component {
     };
 
     handleSubmit = (event) => {
-        if (this.isFormValid()) {
         event.preventDefault();
+        if (this.isFormValid()) {
         this.setState({errors: [], loading: true});
         firebase
         .auth()
