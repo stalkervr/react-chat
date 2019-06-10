@@ -16,12 +16,12 @@ var config = {
   // Initialize Firebase
   firebase.initializeApp(config);
 
-  service firebase.storage {
-    match /b/{bucket}/o {
-      match /{allPaths=**} {
-        allow read, write: if request.auth != null;
-      }
-    }
-  }
+//   service firebase.storage {
+//     match /b/{bucket}/o {
+//       match /{allPaths=**} {
+//         allow read, write: if request.auth != null;
+//       }
+//     }
+//   }
 
   export default firebase;
