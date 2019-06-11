@@ -7,4 +7,11 @@ export const setUser = user => {
             currentUser: user
         }
     }
+};
+
+export const clearUser = user => {
+    return {
+        type: actionTypes.CLEAR_USER,
+        
+    }
 }
