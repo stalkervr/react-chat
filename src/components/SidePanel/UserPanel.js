@@ -1,7 +1,27 @@
 import React, { Component } from 'react';
 import { Grid, Header, Icon, Dropdown } from 'semantic-ui-react';
+//import { connect } from 'react-redux';
 import firebase from '../../firebase';
+
 class UserPanel extends Component {
+
+    state = {
+        user: this.props.currentUser
+    };
+
+/* #region   */
+    // componentDidMount() {
+    //     this.setState({
+    //         user: this.props.currentUser
+    //     });
+    // }
+
+    // componentWillReceiveProps(nextProps) {
+    //     this.setState({
+    //         user: nextProps.currentUser
+    //     });
+    // }
+/* #endregion */
 
     handleSignOut = () => {
         firebase
@@ -13,7 +33,7 @@ class UserPanel extends Component {
     dropdownOptions = () => [
         {
             key: 'user',
-            text: <span>Signed in as <strong>User</strong></span>,
+            text: <span>Signed in as <strong>{ this.state.user.displayName }</strong></span>,
             disabled: true
         },
         {
@@ -27,6 +47,7 @@ class UserPanel extends Component {
     ];
 
     render() {
+        console.log(this.props.currentUser);
         return (
             <Grid style={{ background: '#4c3c4c'}}>
                 <Grid.Column>
@@ -42,14 +63,23 @@ class UserPanel extends Component {
                     {/* USER DROPDOWN */}
                     <Header style={{ padding: '0.25em'}} as="h4" inverted>
                         <Dropdown 
-                            trigger={<span>User</span>}
+                            trigger={<span>{ this.state.user.displayName }</span>}
                             options={this.dropdownOptions()} 
                             />
                     </Header>
                 </Grid.Column>
             </Grid>
         );
+       
     }
 }
+
+/* #region   */
+// const mapStateToProps = state => ({
+//     currentUser: state.user.currentUser
+// });
+
+// export default connect(mapStateToProps)(UserPanel);
+/* #endregion */
 
 export default UserPanel;
