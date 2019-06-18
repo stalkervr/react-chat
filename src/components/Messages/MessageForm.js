@@ -61,7 +61,7 @@ class MessageForm extends Component {
 
     render() {
 
-        const { errors, message } = this.state;
+        const { errors, message, loading } = this.state;
 
         return (
             <Segment className="message__form">
@@ -81,6 +81,7 @@ class MessageForm extends Component {
                 <Button.Group fluid icon width="2">
                     <Button 
                         onClick={this.sendMessage}
+                        disabled={ loading }
                         color="orange"
                         content="Add replay"
                         labelPosition="left"
