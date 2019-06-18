@@ -46,10 +46,10 @@ class UserPanel extends Component {
     ];
 
     render() {
-        //console.log(this.props.currentUser);
+        //console.log(this.props.currentUser); color #ff6f61
         const { user } = this.state;
         return (
-            <Grid style={{ background: '#4c3c4c'}}>
+            <Grid style={{ background: '#778899'}}>
                 <Grid.Column>
                     <Grid.Row style={{ padding: '1.2em', margin: 0 }}>
                         {/* APP HEADER */}
