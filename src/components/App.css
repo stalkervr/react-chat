@@ -6,6 +6,11 @@ body,
     padding: 1em;
 }
 
+/* Channels.js */
+.menu {
+    padding-bottom: 2em;
+    
+}
 /* Messages.js */
 
 .messages {
@@ -17,7 +22,7 @@ body,
 .messages__progress {
     height: 58vh;
     overflow-y: scroll;
-
+    max-width: 100% !important;
 }
 
 /* MessageForm.js */
