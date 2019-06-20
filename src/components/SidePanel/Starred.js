@@ -46,7 +46,7 @@ class Starred extends Component {
             <Menu.Menu className="menu">
                 <Menu.Item>
                     <span>
-                        <Icon name = "star"/> SRARRED
+                        <Icon name = "star"/> STARRED
                     </span>{" "}
                     ({ starredChannels.length })
                 </Menu.Item>
