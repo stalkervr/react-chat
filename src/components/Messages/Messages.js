@@ -39,7 +39,7 @@ class Messages extends Component {
             this.addUserStarsListener(channel.id, user.uid);
         }
     };
-//TODO: DISPLAY STARRED ON SIDE PANNEL 
+//TODO: DISPLAY STARRED ON SIDE PANNEL
     addUserStarsListener = (channelId, userId) => {
         this.state.usersRef
             .child(userId)// select user
