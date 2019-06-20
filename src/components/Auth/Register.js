@@ -34,7 +34,7 @@ class Register extends Component {
               return true;
             }
           };
-//TODO: DONT ANDERSTAND
+//TODO: DONT ANDERSTAND --- ***
 
 /* #region   search error*/
 //   isFormEmpty = ({ username, email, password, passwordConfirmation }) => {
