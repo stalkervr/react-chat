@@ -11,7 +11,7 @@ import { connect } from 'react-redux';
 
 
 
-const App = ({ currentUser, currentChannel, isPrivateChannel }) => {
+const App = ({ currentUser, currentChannel, isPrivateChannel, userPosts }) => {
   return (
     <Grid columns="equal" className="app" style= {{ background: '#eee'}}>
       <ColorPanel />
@@ -33,6 +33,7 @@ const App = ({ currentUser, currentChannel, isPrivateChannel }) => {
           key={currentChannel && currentChannel.id}
           isPrivateChannel={isPrivateChannel}
           currentChannel={currentChannel}
+          userPosts={userPosts}
         /> 
       </Grid.Column>
     </Grid>
@@ -44,7 +45,8 @@ const App = ({ currentUser, currentChannel, isPrivateChannel }) => {
 const mapStateToProps = state => ({
   currentUser: state.user.currentUser,
   currentChannel: state.channel.currentChannel,
-  isPrivateChannel: state.channel.isPrivateChannel
+  isPrivateChannel: state.channel.isPrivateChannel,
+  userPosts: state.channel.userPosts
 });
 
 export default connect(mapStateToProps)(App);

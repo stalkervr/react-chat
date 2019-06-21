@@ -73,7 +73,7 @@ class Starred extends Component {
 
     render() {
 
-        const { starredChannels, user } = this.state;
+        const { starredChannels } = this.state;
 
         return (
             <Menu.Menu className="menu">
