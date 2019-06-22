@@ -9,7 +9,14 @@ class UserPanel extends React.Component {
     modal: false,
     previewImage: '',
     croppedImage: '',
-    blop: ''
+    blop: '',
+    uploadedCroppedImage: '',
+    storageRef: firebase.storage().ref(),
+    userRef: firebase.auth().currentUser,
+    usersRef: firebase.database().ref('users'),
+    metadata: {
+      contentType: 'image/jpeg'
+    }
   };
 
   openModal = () => this.setState({ modal: true});
@@ -36,6 +43,43 @@ class UserPanel extends React.Component {
     }
   ];
 
+  uoloadCroppedImage = () => {
+    const { storageRef, blop, userRef, metadata } = this.state;
+
+    storageRef
+      .child(`avatars/user-${userRef}`)
+      .put(blop, metadata)
+      .then(snap => {
+        snap.ref.getDownloadURL().then(downloadUrl => {
+          this.setState({ uploadedCroppedImage: downloadUrl }, () => this.changeAvatar())
+        })
+      })
+  };
+
+  changeAvatar = () => {
+    this.state.userRef
+      .updateProfile({
+        photoURL: this.state.uploadedCroppedImage
+      })
+      .then(() => {
+        console.log('photoURL updated');
+        this.closeModal();
+      })
+      .catch(err => {
+        console.error(err);
+      })
+
+    this.state.usersRef
+      .child(this.state.user.uid)
+      .update({ avatar: this.state.uploadedCroppedImage })
+      .then(() => {
+        console.log('User avatar updated');
+      })
+      .catch(err => {
+        console.error(err);
+      })
+  };
+
   handleChange = event => {
     const file = event.target.files[0];
     const reader = new FileReader();
@@ -59,6 +103,8 @@ class UserPanel extends React.Component {
       });
     }
   };
+
+
 
   handleSignout = () => {
     firebase
@@ -127,7 +173,8 @@ class UserPanel extends React.Component {
               </Grid>
             </Modal.Content>
             <Modal.Actions>
-              {croppedImage && <Button color="green" inverted>
+              {croppedImage && <Button color="green" inverted onClick={
+                this.uoloadCroppedImage }>
                 <Icon name="save"/> Change Avatar
               </Button>}
               <Button color="green" inverted onClick={ this.handleCropImage }>
