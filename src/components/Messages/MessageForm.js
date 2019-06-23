@@ -61,7 +61,7 @@ class MessageForm extends React.Component {
   };
 
   colonToUnicode = message => {
-    return message.replace(/:[A-Za-z0-9+-]+:/g, x => {
+    return message.replace(/:[A-Za-z0-9+-_]+:/g, x => {
       x = x.replace(/:/g, "");
       let emoji = emojiIndex.emojis[x];
       if (typeof emoji !== "undefined") {
@@ -198,12 +198,14 @@ class MessageForm extends React.Component {
   render() {
     // prettier-ignore
     const { errors, message, loading, modal, uploadState, percentUploaded, emojiPicker } = this.state;
-
+//TODO: Emoji collection and size
     return (
       <Segment className="message__form">
         { emojiPicker && (
           <Picker 
             set="apple"
+            html={ true }
+            sheetSize={ 64 }
             onSelect={ this.handleAddEmoji }
             className="emojipicker"
             title="Rick you emoji"
