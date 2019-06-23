@@ -35,6 +35,10 @@ body,
     z-index: 200;
 }
 
+.emojipicker {
+  position: absolute;
+}
+
 /* Message.js */
 .message__self {
     border-left: 4px solid orange;
@@ -119,4 +123,6 @@ body,
       opacity: 0;
     }
   }
+
+
 
